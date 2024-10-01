@@ -64,6 +64,10 @@ const Home = () => {
 
             case 1:
                 depends = 'favorites';
+                break;
+
+            case 2:
+                depends = 'watchlist';
         }
 
         return import(/* webpackChunkName: "[request]" */ `../../../controllers/${depends}`).then(({ default: ControllerFactory }) => {

@@ -31,6 +31,12 @@ const favoritesTabContent: LibraryTabContent = {
     itemType: [BaseItemKind.Movie]
 };
 
+const watchlistTabContent: LibraryTabContent = {
+    viewType: LibraryTab.Watchlist,
+    collectionType: CollectionType.Movies,
+    itemType: [BaseItemKind.Movie]
+};
+
 const trailersTabContent: LibraryTabContent = {
     viewType: LibraryTab.Trailers,
     itemType: [BaseItemKind.Trailer],

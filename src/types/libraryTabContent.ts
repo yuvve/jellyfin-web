@@ -7,6 +7,7 @@ export interface SectionsView {
     suggestionSections?: SectionType[];
     favoriteSections?: SectionType[];
     programSections?: SectionType[];
+    watchlistSections?: SectionType[];
     isMovieRecommendations?: boolean;
     isLiveTvUpcomingRecordings?: boolean;
 }

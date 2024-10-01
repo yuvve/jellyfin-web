@@ -282,6 +282,10 @@ class AppRouter {
                 urlForList += '&IsNews=true';
             }
 
+            if (options.isInWatchlist) {
+                urlForList += '&IsInWatchlist=true';
+            }
+
             return urlForList;
         }
 
@@ -489,6 +493,10 @@ class AppRouter {
 
     showFavorites() {
         return this.show('home.html?tab=1');
+    }
+
+    showWatchlist() {
+        return this.show('home.html?tab=2');
     }
 }
 

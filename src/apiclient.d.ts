@@ -283,6 +283,7 @@ declare module 'jellyfin-apiclient' {
         updateDisplayPreferences(id: string, obj: DisplayPreferencesDto, userId: string, app: string): Promise<void>;
         updateEasyPassword(userId: string, newPassword: string): Promise<void>;
         updateFavoriteStatus(userId: string, itemId: string, isFavorite: boolean): Promise<UserItemDataDto>;
+        updateWatchlistStatus(userId: string, itemId: string, isInWatchlist: boolean): Promise<UserItemDataDto>;
         updateItemImageIndex(itemId: string, imageType: ImageType, imageIndex: number, newIndex: number): Promise<any>;
         updateItem(item: BaseItemDto): Promise<void>;
         updateLiveTvSeriesTimer(item: SeriesTimerInfoDto): Promise<void>;

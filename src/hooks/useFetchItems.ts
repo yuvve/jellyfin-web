@@ -538,6 +538,42 @@ export const useToggleFavoriteMutation = () => {
     });
 };
 
+interface ToggleWatchlistMutationProp {
+    itemId: string;
+    isInWatchlist: boolean
+}
+
+const fetchUpdateWatchlistStatus = async (
+    currentApi: JellyfinApiContext,
+    itemId: string,
+    isInWatchlist: boolean
+) => {
+    const { api, user } = currentApi;
+    if (api && user?.Id) {
+        if (isInWatchlist) {
+            const response = await getUserLibraryApi(api).unmarkWatchlistItem({
+                userId: user.Id,
+                itemId: itemId
+            });
+            return response.data.IsInWatchlist;
+        } else {
+            const response = await getUserLibraryApi(api).markWatchlistItem({
+                userId: user.Id,
+                itemId: itemId
+            });
+            return response.data.IsInWatchlist;
+        }
+    }
+};
+
+export const useToggleWatchlistMutation = () => {
+    const currentApi = useApi();
+    return useMutation({
+        mutationFn: ({ itemId, isInWatchlist }: ToggleWatchlistMutationProp) =>
+            fetchUpdateWatchlistStatus(currentApi, itemId, isInWatchlist )
+    });
+};
+
 interface TogglePlayedMutationProp {
     itemId: string;
     isPlayed: boolean

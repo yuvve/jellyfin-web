@@ -204,6 +204,9 @@ export function handleCommand(commandName, options) {
         'fastforward': () => {
             playbackManager.fastForward();
         },
+        'watchlist': () => {
+            appRouter.showWatchlist();
+        },
         'rewind': () => {
             playbackManager.rewind();
         },
