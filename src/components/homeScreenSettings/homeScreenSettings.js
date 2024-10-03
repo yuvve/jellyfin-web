@@ -70,6 +70,10 @@ function getLandingScreenOptions(type) {
             value: LibraryTab.Favorites
         });
         list.push({
+            name: globalize.translate('Watchlist'),
+            value: LibraryTab.Watchlist
+        });
+        list.push({
             name: globalize.translate('Collections'),
             value: LibraryTab.Collections
         });

@@ -258,6 +258,10 @@ class AppRouter {
                 urlForList += '&IsFavorite=true';
             }
 
+            if (options.isWatchlisted) {
+                urlForList += '&IsWatchlisted=true';
+            }
+
             if (options.isAiring) {
                 urlForList += '&IsAiring=true';
             }

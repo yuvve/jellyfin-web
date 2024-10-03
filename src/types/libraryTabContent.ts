@@ -6,6 +6,7 @@ import type { SectionType } from './sections';
 export interface SectionsView {
     suggestionSections?: SectionType[];
     favoriteSections?: SectionType[];
+    watchlistSections?: SectionType[];
     programSections?: SectionType[];
     isMovieRecommendations?: boolean;
     isLiveTvUpcomingRecordings?: boolean;

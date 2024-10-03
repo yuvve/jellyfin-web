@@ -2,6 +2,7 @@ import Dashboard from '@mui/icons-material/Dashboard';
 import Edit from '@mui/icons-material/Edit';
 import Favorite from '@mui/icons-material/Favorite';
 import Home from '@mui/icons-material/Home';
+import Watchlist from '@mui/icons-material/WatchLater';
 import Divider from '@mui/material/Divider';
 import Icon from '@mui/material/Icon';
 import List from '@mui/material/List';
@@ -53,6 +54,14 @@ const MainDrawerContent = () => {
                             <Favorite />
                         </ListItemIcon>
                         <ListItemText primary={globalize.translate('Favorites')} />
+                    </ListItemLink>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemLink to='/home.html?tab=2'>
+                        <ListItemIcon>
+                            <Watchlist />
+                        </ListItemIcon>
+                        <ListItemText primary={globalize.translate('Watchlist')} />
                     </ListItemLink>
                 </ListItem>
             </List>

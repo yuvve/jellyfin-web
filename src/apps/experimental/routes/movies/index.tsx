@@ -49,13 +49,19 @@ const genresTabContent: LibraryTabContent = {
     itemType: [BaseItemKind.Movie]
 };
 
+const watchlistTabContent: LibraryTabContent = {
+    viewType: LibraryTab.Watchlist,
+    collectionType: CollectionType.Movies,
+    itemType: [BaseItemKind.Movie]
+};
 const moviesTabMapping: LibraryTabMapping = {
     0: moviesTabContent,
     1: suggestionsTabContent,
     2: trailersTabContent,
     3: favoritesTabContent,
     4: collectionsTabContent,
-    5: genresTabContent
+    5: genresTabContent,
+    6: watchlistTabContent
 };
 
 const Movies: FC = () => {
