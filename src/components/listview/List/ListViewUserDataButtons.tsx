@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import itemHelper from '../../itemHelper';
 import PlayedButton from 'elements/emby-playstatebutton/PlayedButton';
 import FavoriteButton from 'elements/emby-ratingbutton/FavoriteButton';
+import WatchlistButton from 'elements/emby-ratingbutton/WatchlistButton';
 import PlaylistAddIconButton from '../../common/PlaylistAddIconButton';
 import InfoIconButton from '../../common/InfoIconButton';
 import RightIconButtons from '../../common/RightIconButtons';
@@ -20,7 +21,7 @@ const ListViewUserDataButtons: FC<ListViewUserDataButtonsProps> = ({
     item = {},
     listOptions
 }) => {
-    const { IsFavorite, Played } = item.UserData ?? {};
+    const { IsFavorite, Played, IsWatchlisted } = item.UserData ?? {};
 
     const renderRightButtons = () => {
         return listOptions.rightButtons?.map((button, index) => (
@@ -69,6 +70,15 @@ const ListViewUserDataButtons: FC<ListViewUserDataButtonsProps> = ({
                         <FavoriteButton
                             className='listItemButton'
                             isFavorite={IsFavorite}
+                            itemId={item.Id}
+                        />
+                    )}
+
+                    {itemHelper.canRate(item)
+                        && listOptions.enableRatingButton !== false && (
+                        <WatchlistButton
+                            className='listItemButton'
+                            isWatchlisted={IsWatchlisted}
                             itemId={item.Id}
                         />
                     )}

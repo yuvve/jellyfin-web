@@ -102,6 +102,11 @@ function modifyQueryWithFilters(instance, query) {
         hasFilters = true;
     }
 
+    if (filters.IsWatchlisted) {
+        queryFilters.push('IsWatchlisted');
+        hasFilters = true;
+    }
+
     if (filters.IsResumable) {
         queryFilters.push('IsResumable');
         hasFilters = true;
@@ -964,6 +969,7 @@ class ItemsView {
             IsPlayed: userSettings.getFilter(basekey + '-filter-IsPlayed') === 'true',
             IsUnplayed: userSettings.getFilter(basekey + '-filter-IsUnplayed') === 'true',
             IsFavorite: userSettings.getFilter(basekey + '-filter-IsFavorite') === 'true',
+            IsWatchlisted: userSettings.getFilter(basekey + '-filter-IsWatchlisted') === 'true',
             IsResumable: userSettings.getFilter(basekey + '-filter-IsResumable') === 'true',
             Is4K: userSettings.getFilter(basekey + '-filter-Is4K') === 'true',
             IsHD: userSettings.getFilter(basekey + '-filter-IsHD') === 'true',
@@ -1134,6 +1140,10 @@ class ItemsView {
                     filters.push('IsFavorite');
                 }
 
+                if (!params.IsWatchlisted) {
+                    filters.push('IsWatchlisted');
+                }
+
                 filters.push('IsResumable');
                 filters.push('VideoType');
                 filters.push('HasSubtitles');
@@ -1287,6 +1297,10 @@ class ItemsView {
 
         if (params.IsFavorite) {
             values.push('IsFavorite');
+        }
+
+        if (params.IsWatchlisted) {
+            values.push('IsWatchlisted');
         }
 
         if (params.genreId) {

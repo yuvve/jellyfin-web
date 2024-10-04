@@ -8,6 +8,7 @@ import { playbackManager } from 'components/playback/playbackmanager';
 
 import PlayedButton from 'elements/emby-playstatebutton/PlayedButton';
 import FavoriteButton from 'elements/emby-ratingbutton/FavoriteButton';
+import WatchlistButton from 'elements/emby-ratingbutton/WatchlistButton';
 import PlayArrowIconButton from '../../common/PlayArrowIconButton';
 import MoreVertIconButton from '../../common/MoreVertIconButton';
 
@@ -35,7 +36,7 @@ const CardHoverMenu: FC<CardHoverMenuProps> = ({
         btnCssClass,
         'cardOverlayFab-primary'
     );
-    const { IsFavorite, Played } = item.UserData ?? {};
+    const { IsFavorite, Played, IsWatchlisted } = item.UserData ?? {};
 
     return (
         <Box
@@ -71,6 +72,15 @@ const CardHoverMenu: FC<CardHoverMenuProps> = ({
                     <FavoriteButton
                         className={btnCssClass}
                         isFavorite={IsFavorite}
+                        itemId={item.Id}
+                        queryKey={cardOptions.queryKey}
+                    />
+                )}
+
+                {itemHelper.canRate(item) && cardOptions.enableRatingButton !== false && (
+                    <WatchlistButton
+                        className={btnCssClass}
+                        isWatchlisted={IsWatchlisted}
                         itemId={item.Id}
                         queryKey={cardOptions.queryKey}
                     />

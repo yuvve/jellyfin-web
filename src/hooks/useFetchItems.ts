@@ -222,6 +222,7 @@ const fetchGetItemsViewByType = async (
     itemType: BaseItemKind[],
     libraryViewSettings: LibraryViewSettings,
     options?: AxiosRequestConfig
+    // eslint-disable-next-line sonarjs/cognitive-complexity
 ) => {
     const { api, user } = currentApi;
     if (api && user?.Id) {
@@ -325,6 +326,7 @@ const fetchGetItemsViewByType = async (
                         ...getLimitQuery(),
                         ...getAlphaPickerQuery(libraryViewSettings),
                         isFavorite: viewType === LibraryTab.Favorites ? true : undefined,
+                        isWatchlisted: viewType === LibraryTab.Watchlist ? true : undefined,
                         sortBy: [libraryViewSettings.SortBy],
                         sortOrder: [libraryViewSettings.SortOrder],
                         includeItemTypes: itemType,
@@ -373,6 +375,7 @@ export const useGetItemsViewByType = (
             && [
                 LibraryTab.Movies,
                 LibraryTab.Favorites,
+                LibraryTab.Watchlist,
                 LibraryTab.Collections,
                 LibraryTab.Trailers,
                 LibraryTab.Series,
@@ -535,6 +538,42 @@ export const useToggleFavoriteMutation = () => {
     return useMutation({
         mutationFn: ({ itemId, isFavorite }: ToggleFavoriteMutationProp) =>
             fetchUpdateFavoriteStatus(currentApi, itemId, isFavorite )
+    });
+};
+
+interface ToggleWatchlistMutationProp {
+    itemId: string;
+    isWatchlisted: boolean
+}
+
+const fetchUpdateWatchlistStatus = async (
+    currentApi: JellyfinApiContext,
+    itemId: string,
+    isWatchlisted: boolean
+) => {
+    const { api, user } = currentApi;
+    if (api && user?.Id) {
+        if (isWatchlisted) {
+            const response = await getUserLibraryApi(api).unmarkWatchlistItem({
+                userId: user.Id,
+                itemId: itemId
+            });
+            return response.data.IsWatchlisted;
+        } else {
+            const response = await getUserLibraryApi(api).markWatchlistItem({
+                userId: user.Id,
+                itemId: itemId
+            });
+            return response.data.IsWatchlisted;
+        }
+    }
+};
+
+export const useToggleWatchlistMutation = () => {
+    const currentApi = useApi();
+    return useMutation({
+        mutationFn: ({ itemId, isWatchlisted }: ToggleWatchlistMutationProp) =>
+            fetchUpdateWatchlistStatus(currentApi, itemId, isWatchlisted )
     });
 };
 
